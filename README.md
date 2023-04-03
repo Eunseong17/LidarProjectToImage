@@ -4,9 +4,20 @@ Ubuntu 20.04
 ROS noetic  
 Python version least 3   
 ```
+
 ## topic Hz
 ouster/points : 10hz  
 front_cam/image_raw : 30hz
+
+# execution
+```
+$ roscore
+$ rosbag play <yourbag>
+$ python3 LidarProjection.py
+```
+
+
+
 
 
 # rqt_graph
