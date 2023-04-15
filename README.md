@@ -35,3 +35,10 @@ $ python3 LidarProjection.py
 
 * Scene 2  
 ![ezgif com-video-to-gif (6)](https://user-images.githubusercontent.com/102497577/229427228-474e17d6-a656-46c4-9983-434952c5d329.gif)
+
+
+
+
+# Upcoming Update
+1. The depth value is strange.
+2. A sink error occurs at the edge of the image during rotation.
