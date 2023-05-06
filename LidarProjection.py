@@ -45,7 +45,7 @@ class Projection:
         
     def project_lidar_to_camera(self, img, pcd):
         # self.X_c = R*X_L + T
-        self.X_c = np.dot(R, pcd.T).T + t  # N x 3 . camera 좌표계로 변경
+        self.X_c = np.dot(R, pcd.T).T + t  # N x 3. camera 좌표계로 변경
         self.X_c = self.X_c[0 <= self.X_c[:, 2]]  # z 값이 0이상인 배열을 새로 만듬
         # self.X_c = self.X_c[self.X_c[:,2]]
         # pdb.set_trace()
@@ -75,14 +75,15 @@ class Projection:
         self.uv = np.concatenate((u, v), axis=1)
 
     def visualize_projection(self, img):
-        # max_depth = self.max_depth # 지하주차장의 경우 0.05 왜 이러는진 모름
+        # max_depth = self.max_depth 
+        
         # Visualization
         min_val = 0
-        max_val = 15 # 삼차원상에서의 거리가 맥스가 거의 20정도 나왔다.
+        max_val = 15 # 삼차원상에서의 거리 max = 20
         for i, point in enumerate(self.uv):
-            if self.X_c[i,2] <= 2.2:# z축으로 필터링해야 이상한 점들이 나오지 않음.
+            if self.X_c[i,2] <= 2.2:# z축으로 필터링
                 out = int((self.range_value[i] - min_val) * (255 / (max_val - min_val)))
-                color = (255-out, 0, out*2)  # 변경된 부분
+                color = (255-out, 0, out*2)
                 cv2.circle(img, (int(point[0]), int(point[1])), 2, color, -1)
         
         self.publish_image(img)
