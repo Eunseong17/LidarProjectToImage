@@ -81,7 +81,7 @@ class Projection:
         min_val = 0
         max_val = 15 # 삼차원상에서의 거리 max = 20
         for i, point in enumerate(self.uv):
-            if self.X_c[i,2] <= 2.2:# z축으로 필터링
+            if self.X_c[i,2] <= 2.2: # z축으로 필터링
                 out = int((self.range_value[i] - min_val) * (255 / (max_val - min_val)))
                 color = (255-out, 0, out*2)
                 cv2.circle(img, (int(point[0]), int(point[1])), 2, color, -1)
